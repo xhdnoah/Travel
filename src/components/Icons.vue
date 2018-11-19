@@ -109,7 +109,7 @@ export default {
                     display: block
                     margin: 0 auto
                     height: 80%
-                    padding-top: 10%
+                    margin-top: 10%
             .icon-desc
                 position: absolute
                 left: 0

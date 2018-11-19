@@ -5,9 +5,9 @@
 		</div>
 		<div class="header-input">
 			<span class="iconfont">&#xe632;</span>
-			where do you wanna to visit?</div>
+			你想去哪儿？</div>
 		<div class="header-right">
-			city
+			城市
 			<span class="iconfont arrow-icon">&#xe600;</span>
 		</div>
 	</div>
@@ -48,7 +48,7 @@ export default{
 			width:1.24rem
 			float:right
 			text-align:center
-			font-size:.35rem
+			font-size:.3rem
 			.arrow-icon
 				margin-left:-.05rem
 				font-size:.3rem
