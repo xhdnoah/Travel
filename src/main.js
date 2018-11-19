@@ -10,7 +10,7 @@ import 'swiper/dist/css/swiper.css'
 
 Vue.config.productionTip = false
 fastClick.attach(document.body)
-Vue.use(VueAwesomeSwiper,/* { default global options } */)
+Vue.use(VueAwesomeSwiper/* { default global options } */)
 
 new Vue({
   // ES6中键和值相同可以简写，router相当于router:router
