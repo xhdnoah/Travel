@@ -1,11 +1,12 @@
 <!-- 容器组件 -->
 <template>
   <div>
-  	<home-header>This is header</home-header>
-  	<home-swiper>This is swiper</home-swiper>
-    <home-icons></home-icons>
-    <home-recommend>Hot Recommended</home-recommend>
-    <home-weekend></home-weekend>
+    <!-- 父组件通过属性向子组件传值，这里传递的是通过ajax接收的数据 -->
+  	<home-header :city="city"></home-header>
+  	<home-swiper :list="swiperList"></home-swiper>
+    <home-icons :list="iconList"></home-icons>
+    <home-recommend :list="recommendList"></home-recommend>
+    <home-weekend :list="weekendList"></home-weekend>
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import HomeSwiper from '@/components/Swiper.vue'
 import HomeIcons from '@/components/Icons.vue'
 import HomeRecommend from '@/components/Recommend.vue'
 import HomeWeekend from '@/components/Weekend.vue'
+import axios from 'axios'
 
 export default {
   name: 'home',
@@ -26,6 +28,38 @@ export default {
     HomeIcons,
     HomeRecommend,
     HomeWeekend
+  },
+  data(){
+    return{
+      city:'',
+      swiperList:[],
+      iconList:[],
+      recommendList:[],
+      weekendList:[]
+    }
+  },
+  methods:{
+    getHomeInfo(){
+      // axios 返回一个promise对象
+      axios.get('/api/index')
+        .then(this.getHomeInfoSucc)
+    },
+    getHomeInfoSucc(res){
+      res = res.data
+      if(res.ret && res.data){
+        const data = res.data
+        this.city = data.city
+        this.swiperList = data.swiperList
+        this.iconList = data.iconList
+        this.recommendList = data.recommendList
+        this.weekendList = data.weekendList
+      }
+    }
+  },
+  // 利用生命周期函数发起Ajax请求
+  mounted(){
+    this.getHomeInfo()
   }
+  
 }
 </script>

@@ -1,8 +1,8 @@
 <template>
     <div class="wrapper">
-    	<swiper :options="swiperOption">
+    	<swiper :options="swiperOption" v-if="list.length">
         <!-- slides -->
-            <swiper-slide v-for="item of swiperList" :key="item.id">
+            <swiper-slide v-for="item of list" :key="item.id">
                 <img class="swiper-img" :src="item.imgUrl" alt="">
             </swiper-slide>
             <!-- Optional controls -->
@@ -15,6 +15,9 @@
 export default{
 	name:'HomeSwiper',
     // 子组件的data是函数类型
+    props:{
+        list:Array
+    },
 	data: function(){
 		return{
             // swiper 可选配置项
@@ -22,18 +25,17 @@ export default{
                 pagination:'.swiper-pagination',
                 loop: true
             },
-            // Vue 是数据驱动的框架
-            swiperList:[{
+            // swiperList:[{
                 
-                id:'001',
-                imgUrl:'http://img1.qunarzz.com/piao/fusion/1809/c6/2467595fffc3b302.jpg_750x200_cca13d51.jpg'
-            },{
-                id:'002',
-                imgUrl:'http://img1.qunarzz.com/piao/fusion/1811/ff/1bf7d3a4f6591002.jpg_750x200_be24850a.jpg'
-            },{
-                id:'003',
-                imgUrl:'http://img1.qunarzz.com/piao/fusion/1811/42/f11738e550ef8902.jpg_750x200_5b72564d.jpg'
-            }]
+            //     id:'001',
+            //     imgUrl:'http://img1.qunarzz.com/piao/fusion/1809/c6/2467595fffc3b302.jpg_750x200_cca13d51.jpg'
+            // },{
+            //     id:'002',
+            //     imgUrl:'http://img1.qunarzz.com/piao/fusion/1811/ff/1bf7d3a4f6591002.jpg_750x200_be24850a.jpg'
+            // },{
+            //     id:'003',
+            //     imgUrl:'http://img1.qunarzz.com/piao/fusion/1811/42/f11738e550ef8902.jpg_750x200_5b72564d.jpg'
+            // }]
 		}
 	}
 }

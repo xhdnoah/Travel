@@ -1,7 +1,7 @@
 <template>
     <!-- 定义一个限制宽高比的div -->
     <div class="icons">
-        <swiper>
+        <swiper :options="swiperOption">
             <swiper-slide v-for="(page,index) of pages" :key="index">
                 <div class="icon" v-for="item of page" :key="item.id">
                     <div class="icon-img">
@@ -17,45 +17,55 @@
 <script>
 export default {
     name:'HomeIcons',
+    props:{
+        list: Array
+    },
+    // data(){
+    //     return{
+    //         iconList: [{
+    //             id: '0001',
+    //             imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
+    //             desc: '景点门票'
+    //         },{
+    //             id: '0002',
+    //             imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/20/831d62d2e1c7be02.png',
+    //             desc: '文化古迹'
+    //         },{
+    //             id:'0003',
+    //             imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png',
+    //             desc: '一日游'
+    //         },{
+    //             id:'0004',
+    //             imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/20/831d62d2e1c7be02.png',
+    //             desc: '打卡圣地'
+    //         },{
+    //             id: '0005',
+    //             imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/20/831d62d2e1c7be02.png',
+    //             desc: '中山陵'
+    //         },{
+    //             id: '0006',
+    //             imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/c1/6f15f887179fa002.png',
+    //             desc: '夫子庙'
+    //         },{
+    //             id:'0007',
+    //             imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/fa/2548667cb6e902.png',
+    //             desc: '总统府'
+    //         },{
+    //             id:'0008',
+    //             imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/97/02f5043b51b2102.png',
+    //             desc: '牛首山'
+    //         },{
+    //             id:'0009',
+    //             imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/8246f27355943202.png',
+    //             desc: '万达主题乐园'
+    //         }]
+        // }
+    // },
     data(){
-        return{
-            iconList: [{
-                id: '0001',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-                desc: '景点门票'
-            },{
-                id: '0002',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/20/831d62d2e1c7be02.png',
-                desc: '文化古迹'
-            },{
-                id:'0003',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png',
-                desc: '一日游'
-            },{
-                id:'0004',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/20/831d62d2e1c7be02.png',
-                desc: '打卡圣地'
-            },{
-                id: '0005',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/20/831d62d2e1c7be02.png',
-                desc: '中山陵'
-            },{
-                id: '0006',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/c1/6f15f887179fa002.png',
-                desc: '夫子庙'
-            },{
-                id:'0007',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/fa/2548667cb6e902.png',
-                desc: '总统府'
-            },{
-                id:'0008',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/97/02f5043b51b2102.png',
-                desc: '牛首山'
-            },{
-                id:'0009',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/8246f27355943202.png',
-                desc: '万达主题乐园'
-            }]
+        return {
+            swiperOption:{
+                autoplay:false
+            }
         }
     },
     // 使用计算属性为图标分配轮播页面
@@ -63,7 +73,7 @@ export default {
     computed:{
         pages(){
             const pages = []
-            this.iconList.forEach((item,index) => {
+            this.list.forEach((item,index) => {
                 const page = Math.floor(index/8)
                 if (!pages[page]){
                     pages[page] = []

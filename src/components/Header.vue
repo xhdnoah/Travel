@@ -7,7 +7,7 @@
 			<span class="iconfont">&#xe632;</span>
 			你想去哪儿？</div>
 		<div class="header-right">
-			城市
+			{{this.city}}
 			<span class="iconfont arrow-icon">&#xe600;</span>
 		</div>
 	</div>
@@ -15,7 +15,11 @@
 
 <script>
 export default{
-	name:'HomeHeader'
+	name:'HomeHeader',
+	// 子组件接收父组件的传值
+	props:{
+		city: String
+	}
 }
 </script>
 
