@@ -6,10 +6,12 @@
 		<div class="header-input">
 			<span class="iconfont">&#xe632;</span>
 			你想去哪儿？</div>
+		<router-link to='/city'>
 		<div class="header-right">
-			{{this.city}}
+			
 			<span class="iconfont arrow-icon">&#xe600;</span>
 		</div>
+		</router-link>
 	</div>
 </template>
 
@@ -18,7 +20,7 @@ export default{
 	name:'HomeHeader',
 	// 子组件接收父组件的传值
 	props:{
-		city: String
+		
 	}
 }
 </script>
@@ -53,9 +55,8 @@ export default{
 			float:right
 			text-align:center
 			font-size:.3rem
+			color: #ffffff
 			.arrow-icon
 				margin-left:-.05rem
 				font-size:.3rem
-				
-
 </style>
