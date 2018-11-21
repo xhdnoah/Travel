@@ -5,17 +5,24 @@
                 <div class="title border-topbottom">您的位置</div>
                 <div class="button-list">
                     <div class="button-wrapper">
-                        <div class="button">北京</div>
+                        <div class="button"></div>
                     </div>
                 </div>
             </div>
             <div class="area">
                 <div class="title border-topbottom">热门城市</div>
+                <div class="button-list">
+                    <div class="button-wrapper" v-for="item of hot" :key="item.id">
+                        <div class="button">{{item.name}}</div>
+                    </div>
+                </div>
             </div>
-            <div class="area">
-                <div class="title border-topbottom">A</div>
+            <!-- 嵌套循环 -->
+            <div class="area" v-for="(item,key) of cities" :key="key">
+                <div class="title border-topbottom">{{key}}</div>
                 <div class="item-list">
-                    <div class="item border-topbottom">
+                    <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">
+                        {{innerItem.name}}
                     </div>
                 </div>
             </div>
@@ -27,6 +34,10 @@
 import Bscroll from 'better-scroll'
 export default {
     name:'CityList',
+    props:{
+        hot: Array,
+        cities: Object
+    },
     mounted(){
         // 创建 Bscroll 实例属性，同时传入 list DOM结构
         this.scroll = new Bscroll(this.$refs.wrapper)
@@ -41,13 +52,16 @@ export default {
             border-color: #ccc
         &:after
             borcer-color: #ccc
+    .border-bottom
+        &:before
+            border-color: #ccc
     .list
         overflow: hidden
         position: absolute
         // 给input框预留1.58rem位置
         top: 1.58rem
         left: 0
-        rigth: 0
+        right: 0
         bottom: 0
         .title
             line-height: .54rem

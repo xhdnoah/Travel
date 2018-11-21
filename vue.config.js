@@ -5,6 +5,7 @@ function resolve(dir){
 }
 
 const mockData = require("./mock/index.json");
+const cityData = require("./mock/city.json");
 
 module.exports = {
     chainWebpack:config =>{
@@ -27,6 +28,9 @@ module.exports = {
             app.get("/api/index",(req,res) =>{
                 res.json(mockData)
             });
+            app.get('/api/city',(req,res) =>{
+                res.json(cityData)
+            })
         }
     }
 };
