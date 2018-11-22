@@ -29,7 +29,7 @@ export default {
         }
     },
     updated(){
-        this.startY = this$refs['A'][0].offsetTop
+        this.startY = this.$refs['A'][0].offsetTop
     },
     // 使用计算属性替代props属性来循环字母表的项
     computed:{
