@@ -8,7 +8,7 @@
 			你想去哪儿？</div>
 		<router-link to='/city'>
 		<div class="header-right">
-			
+			{{this.$store.state.city}}
 			<span class="iconfont arrow-icon">&#xe600;</span>
 		</div>
 		</router-link>
@@ -17,11 +17,7 @@
 
 <script>
 export default{
-	name:'HomeHeader',
-	// 子组件接收父组件的传值
-	props:{
-		
-	}
+	name:'HomeHeader'
 }
 </script>
 
