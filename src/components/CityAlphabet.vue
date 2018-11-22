@@ -24,7 +24,8 @@ export default {
         return{
             // 用来标识touch事件状态
             touchStatus : false,
-            startY: 0
+            startY: 0,
+            timer: null
         }
     },
     updated(){
@@ -50,16 +51,18 @@ export default {
         // 通过计算字母和手指到顶部的距离做插值
         handleTouchMove(e){
             if(this.touchStatus){
-                // 获取到字母表中“A”距顶部的高度
-                const startY = this.$refs['A'][0].offsetTop
-                console.log(startY)
-                // 获取到用户touch位置到屏幕顶部的距离
-                const touchY = e.touches[0].clientY - 74
-                const index = Math.floor((touchY - startY) / 23)
-                console.log(index)
-                if(index >= 0 && index < this.letters.length){
-                    this.$emit('change',this.letters[index])
+                if(this.timer){
+                    clearTimeout(this.timer)
                 }
+                this.timer = setTimeout(() => {
+                    // 获取到用户touch位置到屏幕顶部的距离
+                    const touchY = e.touches[0].clientY - 74
+                    const index = Math.floor((touchY - this.startY) / 23)
+                    console.log(index)
+                    if(index >= 0 && index < this.letters.length){
+                        this.$emit('change',this.letters[index])
+                    }
+                },16)
             }
         },
         handleTouchEnd(){
