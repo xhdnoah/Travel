@@ -58,6 +58,5 @@ export default {
   mounted(){
     this.getHomeInfo()
   }
-  
 }
 </script>

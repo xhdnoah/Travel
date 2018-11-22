@@ -5,7 +5,7 @@
                 <div class="title border-topbottom">您的位置</div>
                 <div class="button-list">
                     <div class="button-wrapper">
-                        <div class="button">北京</div>
+                        <div class="button">{{this.currentCity}}</div>
                     </div>
                 </div>
             </div>
@@ -39,6 +39,7 @@
 
 <script>
 import Bscroll from 'better-scroll'
+import { mapState,mapMutations } from 'vuex'
 export default {
     name:'CityList',
     props:{
@@ -46,10 +47,19 @@ export default {
         cities: Object,
         letter: String
     },
+    computed:{
+        ...mapState({
+            currentCity:'city'
+        })
+    },
     methods:{
         handleCityClick(city){
-            this.$store.dispatch('changeCity',city)
-        }
+            // this.$store.commit('changeCity',city)
+            this.changeCity(city)
+            // 路由跳转，实现点击城市返回首页
+            this.$router.push('/')
+        },
+        ...mapMutations(['changeCity'])
     },
     mounted(){
         // 创建 Bscroll 实例属性，同时传入 list DOM结构
