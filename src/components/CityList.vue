@@ -5,7 +5,7 @@
                 <div class="title border-topbottom">您的位置</div>
                 <div class="button-list">
                     <div class="button-wrapper">
-                        <div class="button"></div>
+                        <div class="button">北京</div>
                     </div>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <!-- 嵌套循环 -->
-            <div class="area" v-for="(item,key) of cities" :key="key">
+            <div class="area" v-for="(item,key) of cities" :key="key" :ref="key">
                 <div class="title border-topbottom">{{key}}</div>
                 <div class="item-list">
                     <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">
@@ -36,11 +36,21 @@ export default {
     name:'CityList',
     props:{
         hot: Array,
-        cities: Object
+        cities: Object,
+        letter: String
     },
     mounted(){
         // 创建 Bscroll 实例属性，同时传入 list DOM结构
         this.scroll = new Bscroll(this.$refs.wrapper)
+    },
+    watch:{
+        letter(){
+            if(this.letter){
+                // ref属性是对DOM元素的reference,循环得到的是一个DOM的数组，需要加上[0]
+                const element = this.$refs[this.letter][0]
+                this.scroll.scrollToElement(element)
+            }
+        }
     }
 }
 </script>
