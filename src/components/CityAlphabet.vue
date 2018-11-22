@@ -23,8 +23,12 @@ export default {
     data(){
         return{
             // 用来标识touch事件状态
-            touchStatus : false
+            touchStatus : false,
+            startY: 0
         }
+    },
+    updated(){
+        this.startY = this$refs['A'][0].offsetTop
     },
     // 使用计算属性替代props属性来循环字母表的项
     computed:{
