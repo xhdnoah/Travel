@@ -3,16 +3,20 @@
     <div class="title">热门推荐</div>
     <ul>
         <!-- 添加 border-bottom 的类名，可以给 li 元素实现一像素边框效果 -->
-        <li class="item border-bottom" v-for="item of list" :key="item.id">
+        <router-link 
+        class="item border-bottom" 
+        v-for="item of list" 
+        :key="item.id"
+        :to="'/detail/' + item.id">
             <div class="item-img-wrapper">
                 <img :src="item.imgUrl" alt="" class="item-img">
             </div>
             <div class="item-info">
                 <p class="item-title">{{item.title}}</p>
                 <p class="item-desc">{{item.desc}}</p>
-                <button class="item-button">Click for details</button>
+                <button class="item-button">查看详情</button>
             </div>
-        </li>
+        </router-link>
     </ul>
  </div>
 </template>
