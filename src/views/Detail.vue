@@ -1,9 +1,13 @@
 <template>
     <div>
-        <detail-banner></detail-banner>
+        <detail-banner
+            :sightName="sightName"
+            :bannerImg="bannerImg"
+            :bannerImgs="galleryImgs"
+        ></detail-banner>
         <detail-header></detail-header>
         <div class="content">
-            <detail-list></detail-list>
+            <detail-list :list="list"></detail-list>
         </div>
     </div>
 </template>
@@ -12,12 +16,44 @@
 import DetailBanner from '@/components/Banner'
 import DetailHeader from '@/components/DetailHeader'
 import DetailList from '@/components/DetailList'
+import axios from 'axios'
 export default {
     name:'Detail',
     components:{
         DetailBanner,
         DetailHeader,
         DetailList
+    },
+    data(){
+        return{
+            sightName:'',
+            bannerImg:'',
+            galleryImgs:[],
+            list:[]
+        }
+    },
+    methods:{
+        getDetailInfo(){
+            axios.get('/api/detail',{
+                params:{
+                    id:this.$route.params.id
+                }
+            }).then(this.handleGetDataSucc)
+        },
+        handleGetDataSucc(res){
+            res = res.data
+            if(res.ret && res.data){
+                const data = res.data
+                console.log(data)
+                this.sightName = data.sightName
+                this.bannerImg = data.bannerImg
+                this.galleryImgs = data.galleryImgs
+                this.list = data.categoryList
+            }
+        }
+    },
+    mounted(){
+        this.getDetailInfo()
     }
 }
 </script>
